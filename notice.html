@@ -1,0 +1,898 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>নোটিশ বোর্ড | পোড়াবাড়ী উচ্চ বিদ্যালয়</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, "Noto Sans Bengali", sans-serif;
+            background: #f5f9f7;
+            color: #222;
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 14px 6%;
+            background: rgba(0, 70, 50, 0.94);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(255,255,255,0.2);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 4px;
+        }
+
+        .school-name {
+            color: white;
+        }
+
+        .school-name h2 {
+            font-size: 20px;
+        }
+
+        .school-name p {
+            font-size: 11px;
+            opacity: 0.85;
+            margin-top: 3px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #ffd700;
+        }
+
+        .language-btn {
+            border: 1px solid white;
+            background: transparent;
+            color: white;
+            padding: 7px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .language-btn:hover {
+            background: white;
+            color: #006a4e;
+        }
+
+        /* HERO */
+        .page-hero {
+            min-height: 45vh;
+            padding: 150px 7% 75px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            color: white;
+
+            background:
+                linear-gradient(
+                    rgba(0, 60, 45, 0.80),
+                    rgba(0, 60, 45, 0.80)
+                ),
+                url("images/school.jpg");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(42px, 7vw, 68px);
+            letter-spacing: 1px;
+            animation: titleReveal 1s ease forwards;
+        }
+
+        .page-hero h1 span {
+            color: #ffd700;
+        }
+
+        .page-hero p {
+            margin-top: 14px;
+            font-size: 18px;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.35s forwards;
+        }
+
+        /* NOTICE SECTION */
+        .notice-section {
+            padding: 80px 7%;
+            background: #fff;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #006a4e;
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            max-width: 760px;
+            margin: 0 auto 42px;
+            line-height: 1.8;
+        }
+
+        .notice-wrapper {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        .notice-card {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+
+            padding: 22px 25px;
+            margin-bottom: 18px;
+
+            background: #f8fcfa;
+            border: 1px solid #dcece5;
+            border-left: 5px solid #006a4e;
+            border-radius: 14px;
+
+            box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+            transition: 0.35s;
+        }
+
+        .notice-card:hover {
+            transform: translateX(6px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.10);
+        }
+
+        .notice-date {
+            min-width: 75px;
+            height: 75px;
+            border-radius: 12px;
+            background: #006a4e;
+            color: white;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            flex-shrink: 0;
+        }
+
+        .notice-date .day {
+            font-size: 26px;
+            font-weight: bold;
+            line-height: 1;
+        }
+
+        .notice-date .month {
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .notice-content {
+            flex: 1;
+        }
+
+        .notice-content h3 {
+            color: #004d39;
+            font-size: 20px;
+            margin-bottom: 7px;
+        }
+
+        .notice-content p {
+            color: #666;
+            line-height: 1.6;
+            font-size: 14px;
+        }
+
+        .notice-badge {
+            background: #fff3c4;
+            color: #735d00;
+            padding: 6px 11px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .notice-button {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 8px 15px;
+            border-radius: 20px;
+            background: #006a4e;
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            transition: 0.3s;
+        }
+
+        .notice-button:hover {
+            background: #004d39;
+            transform: translateY(-2px);
+        }
+
+        /* EMPTY NOTICE */
+        .empty-notice {
+            text-align: center;
+            padding: 55px 20px;
+            border: 2px dashed #cfe2d9;
+            border-radius: 18px;
+            background: #f8fcfa;
+        }
+
+        .empty-notice .icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .empty-notice h3 {
+            color: #006a4e;
+            margin-bottom: 8px;
+        }
+
+        .empty-notice p {
+            color: #777;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #004d39;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        .footer-school {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ANIMATIONS */
+        @keyframes titleReveal {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* MOBILE */
+        @media(max-width: 900px) {
+
+            header {
+                padding: 12px 4%;
+            }
+
+            nav {
+                gap: 10px;
+            }
+
+            nav a {
+                font-size: 11px;
+            }
+
+            .school-name h2 {
+                font-size: 16px;
+            }
+        }
+
+        @media(max-width: 600px) {
+
+            header {
+                position: relative;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            nav {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                padding-top: 5px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .page-hero {
+                min-height: 40vh;
+                padding-top: 70px;
+            }
+
+            .page-hero h1 {
+                font-size: 40px;
+            }
+
+            .page-hero p {
+                font-size: 15px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .notice-card {
+                align-items: flex-start;
+                gap: 15px;
+                padding: 18px;
+            }
+
+            .notice-date {
+                min-width: 62px;
+                height: 62px;
+            }
+
+            .notice-date .day {
+                font-size: 22px;
+            }
+
+            .notice-content h3 {
+                font-size: 17px;
+            }
+
+            .notice-badge {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+
+        <div class="logo-area">
+
+            <div class="logo">
+                <img src="images/logo.png" alt="Porabari High School Logo">
+            </div>
+
+            <div class="school-name">
+                <h2 id="schoolName">পোড়াবাড়ী উচ্চ বিদ্যালয়</h2>
+                <p id="schoolTagline">শিক্ষা • শৃঙ্খলা • সাফল্য</p>
+            </div>
+
+        </div>
+
+        <nav>
+
+            <a href="index.html" id="navHome">হোম</a>
+            <a href="index.html#about" id="navAbout">আমাদের সম্পর্কে</a>
+            <a href="index.html#academic" id="navAcademic">একাডেমিক</a>
+            <a href="notice.html" class="active" id="navNotice">নোটিশ</a>
+            <a href="gallery.html" id="navGallery">গ্যালারি</a>
+            <a href="index.html#contact" id="navContact">যোগাযোগ</a>
+
+            <button
+                class="language-btn"
+                onclick="changeLanguage()"
+                id="languageButton">
+                English
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- HERO -->
+    <section class="page-hero">
+
+        <div>
+
+            <h1 id="heroTitle">
+                নোটিশ <span>বোর্ড</span>
+            </h1>
+
+            <p id="heroText">
+                বিদ্যালয়ের সর্বশেষ গুরুত্বপূর্ণ ঘোষণা ও নোটিশ
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- NOTICE BOARD -->
+    <section class="notice-section">
+
+        <h2 class="section-title" id="noticeTitle">
+            সর্বশেষ নোটিশ
+        </h2>
+
+        <p class="section-subtitle" id="noticeSubtitle">
+            বিদ্যালয়ের পরীক্ষা, ভর্তি, ছুটি, অনুষ্ঠান ও অন্যান্য গুরুত্বপূর্ণ তথ্য এখানে প্রকাশ করা হবে।
+        </p>
+
+
+        <div class="notice-wrapper">
+
+            <!-- NOTICE 1 -->
+            <div class="notice-card">
+
+                <div class="notice-date">
+                    <div class="day" id="notice1Day">১৬</div>
+                    <div class="month" id="notice1Month">আগস্ট ২০২৬</div>
+                </div>
+
+                <div class="notice-content">
+
+                    <h3 id="notice1Title">
+                        বিদ্যালয়ের গুরুত্বপূর্ণ নোটিশ
+                    </h3>
+
+                    <p id="notice1Text">
+                        এখানে বিদ্যালয়ের নতুন গুরুত্বপূর্ণ ঘোষণা বা নোটিশের বিস্তারিত তথ্য লিখুন।
+                    </p>
+
+                    <a href="#" class="notice-button" id="notice1Button">
+                        বিস্তারিত দেখুন
+                    </a>
+
+                </div>
+
+                <span class="notice-badge" id="notice1Badge">
+                    নতুন
+                </span>
+
+            </div>
+
+
+            <!-- NOTICE 2 -->
+            <div class="notice-card">
+
+                <div class="notice-date">
+                    <div class="day" id="notice2Day">০১</div>
+                    <div class="month" id="notice2Month">জুলাই ২০২৬</div>
+                </div>
+
+                <div class="notice-content">
+
+                    <h3 id="notice2Title">
+                        পরীক্ষা সংক্রান্ত নোটিশ
+                    </h3>
+
+                    <p id="notice2Text">
+                        পরীক্ষার সময়সূচি, প্রস্তুতি এবং প্রয়োজনীয় নির্দেশনা এখানে প্রকাশ করা যাবে।
+                    </p>
+
+                    <a href="#" class="notice-button" id="notice2Button">
+                        বিস্তারিত দেখুন
+                    </a>
+
+                </div>
+
+                <span class="notice-badge" id="notice2Badge">
+                    নোটিশ
+                </span>
+
+            </div>
+
+
+            <!-- NOTICE 3 -->
+            <div class="notice-card">
+
+                <div class="notice-date">
+                    <div class="day" id="notice3Day">১৫</div>
+                    <div class="month" id="notice3Month">জুন ২০২৬</div>
+                </div>
+
+                <div class="notice-content">
+
+                    <h3 id="notice3Title">
+                        বিদ্যালয়ের ছুটির নোটিশ
+                    </h3>
+
+                    <p id="notice3Text">
+                        বিদ্যালয়ের ছুটি বা বিশেষ কার্যক্রম সম্পর্কিত তথ্য এখানে প্রকাশ করা যাবে।
+                    </p>
+
+                    <a href="#" class="notice-button" id="notice3Button">
+                        বিস্তারিত দেখুন
+                    </a>
+
+                </div>
+
+                <span class="notice-badge" id="notice3Badge">
+                    তথ্য
+                </span>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- FOOTER -->
+    <footer>
+
+        <p class="footer-school" id="footerSchool">
+            পোড়াবাড়ী উচ্চ বিদ্যালয়
+        </p>
+
+        <p id="footerText">
+            শিক্ষা • শৃঙ্খলা • সাফল্য
+        </p>
+
+        <p id="copyrightText">
+            © <span id="year"></span>
+            <span id="copyrightSchool">পোড়াবাড়ী উচ্চ বিদ্যালয়</span>।
+            সর্বস্বত্ব সংরক্ষিত।
+        </p>
+
+    </footer>
+
+
+    <script>
+
+        let english = false;
+
+
+        /* CURRENT YEAR */
+        document.getElementById("year").innerText =
+            new Date().getFullYear();
+
+
+        function changeLanguage() {
+
+            english = !english;
+
+
+            /* =========================
+               ENGLISH
+            ========================= */
+
+            if (english) {
+
+                /* SCHOOL */
+                document.getElementById("schoolName").innerText =
+                    "Porabari High School";
+
+                document.getElementById("schoolTagline").innerText =
+                    "Education • Discipline • Success";
+
+
+                /* NAVIGATION */
+                document.getElementById("navHome").innerText =
+                    "Home";
+
+                document.getElementById("navAbout").innerText =
+                    "About Us";
+
+                document.getElementById("navAcademic").innerText =
+                    "Academic";
+
+                document.getElementById("navNotice").innerText =
+                    "Notice";
+
+                document.getElementById("navGallery").innerText =
+                    "Gallery";
+
+                document.getElementById("navContact").innerText =
+                    "Contact";
+
+                document.getElementById("languageButton").innerText =
+                    "বাংলা";
+
+
+                /* HERO */
+                document.getElementById("heroTitle").innerHTML =
+                    'Notice <span>Board</span>';
+
+                document.getElementById("heroText").innerText =
+                    "Latest important announcements and notices from the school";
+
+
+                /* NOTICE TITLE */
+                document.getElementById("noticeTitle").innerText =
+                    "Latest Notices";
+
+                document.getElementById("noticeSubtitle").innerText =
+                    "Important information about examinations, admission, holidays, events and other school activities will be published here.";
+
+
+                /* NOTICE 1 */
+
+                document.getElementById("notice1Day").innerText =
+                    "16";
+
+                document.getElementById("notice1Month").innerText =
+                    "August 2026";
+
+                document.getElementById("notice1Title").innerText =
+                    "Important School Notice";
+
+                document.getElementById("notice1Text").innerText =
+                    "Write the details of the latest important school announcement or notice here.";
+
+                document.getElementById("notice1Button").innerText =
+                    "View Details";
+
+                document.getElementById("notice1Badge").innerText =
+                    "New";
+
+
+                /* NOTICE 2 */
+
+                document.getElementById("notice2Day").innerText =
+                    "01";
+
+                document.getElementById("notice2Month").innerText =
+                    "July 2026";
+
+                document.getElementById("notice2Title").innerText =
+                    "Examination Notice";
+
+                document.getElementById("notice2Text").innerText =
+                    "Examination schedules, preparation instructions and other necessary information can be published here.";
+
+                document.getElementById("notice2Button").innerText =
+                    "View Details";
+
+                document.getElementById("notice2Badge").innerText =
+                    "Notice";
+
+
+                /* NOTICE 3 */
+
+                document.getElementById("notice3Day").innerText =
+                    "15";
+
+                document.getElementById("notice3Month").innerText =
+                    "June 2026";
+
+                document.getElementById("notice3Title").innerText =
+                    "School Holiday Notice";
+
+                document.getElementById("notice3Text").innerText =
+                    "Information about school holidays or special activities can be published here.";
+
+                document.getElementById("notice3Button").innerText =
+                    "View Details";
+
+                document.getElementById("notice3Badge").innerText =
+                    "Info";
+
+
+                /* FOOTER */
+
+                document.getElementById("footerSchool").innerText =
+                    "Porabari High School";
+
+                document.getElementById("footerText").innerText =
+                    "Education • Discipline • Success";
+
+                document.getElementById("copyrightSchool").innerText =
+                    "Porabari High School";
+
+                document.getElementById("copyrightText").innerHTML =
+                    '© <span id="year">' +
+                    new Date().getFullYear() +
+                    '</span> Porabari High School. All Rights Reserved.';
+
+            }
+
+
+            /* =========================
+               BANGLA
+            ========================= */
+
+            else {
+
+                /* SCHOOL */
+                document.getElementById("schoolName").innerText =
+                    "পোড়াবাড়ী উচ্চ বিদ্যালয়";
+
+                document.getElementById("schoolTagline").innerText =
+                    "শিক্ষা • শৃঙ্খলা • সাফল্য";
+
+
+                /* NAVIGATION */
+                document.getElementById("navHome").innerText =
+                    "হোম";
+
+                document.getElementById("navAbout").innerText =
+                    "আমাদের সম্পর্কে";
+
+                document.getElementById("navAcademic").innerText =
+                    "একাডেমিক";
+
+                document.getElementById("navNotice").innerText =
+                    "নোটিশ";
+
+                document.getElementById("navGallery").innerText =
+                    "গ্যালারি";
+
+                document.getElementById("navContact").innerText =
+                    "যোগাযোগ";
+
+                document.getElementById("languageButton").innerText =
+                    "English";
+
+
+                /* HERO */
+                document.getElementById("heroTitle").innerHTML =
+                    'নোটিশ <span>বোর্ড</span>';
+
+                document.getElementById("heroText").innerText =
+                    "বিদ্যালয়ের সর্বশেষ গুরুত্বপূর্ণ ঘোষণা ও নোটিশ";
+
+
+                /* NOTICE TITLE */
+                document.getElementById("noticeTitle").innerText =
+                    "সর্বশেষ নোটিশ";
+
+                document.getElementById("noticeSubtitle").innerText =
+                    "বিদ্যালয়ের পরীক্ষা, ভর্তি, ছুটি, অনুষ্ঠান ও অন্যান্য গুরুত্বপূর্ণ তথ্য এখানে প্রকাশ করা হবে।";
+
+
+                /* NOTICE 1 */
+
+                document.getElementById("notice1Day").innerText =
+                    "১৬";
+
+                document.getElementById("notice1Month").innerText =
+                    "আগস্ট ২০২৬";
+
+                document.getElementById("notice1Title").innerText =
+                    "বিদ্যালয়ের গুরুত্বপূর্ণ নোটিশ";
+
+                document.getElementById("notice1Text").innerText =
+                    "এখানে বিদ্যালয়ের নতুন গুরুত্বপূর্ণ ঘোষণা বা নোটিশের বিস্তারিত তথ্য লিখুন।";
+
+                document.getElementById("notice1Button").innerText =
+                    "বিস্তারিত দেখুন";
+
+                document.getElementById("notice1Badge").innerText =
+                    "নতুন";
+
+
+                /* NOTICE 2 */
+
+                document.getElementById("notice2Day").innerText =
+                    "০১";
+
+                document.getElementById("notice2Month").innerText =
+                    "জুলাই ২০২৬";
+
+                document.getElementById("notice2Title").innerText =
+                    "পরীক্ষা সংক্রান্ত নোটিশ";
+
+                document.getElementById("notice2Text").innerText =
+                    "পরীক্ষার সময়সূচি, প্রস্তুতি এবং প্রয়োজনীয় নির্দেশনা এখানে প্রকাশ করা যাবে।";
+
+                document.getElementById("notice2Button").innerText =
+                    "বিস্তারিত দেখুন";
+
+                document.getElementById("notice2Badge").innerText =
+                    "নোটিশ";
+
+
+                /* NOTICE 3 */
+
+                document.getElementById("notice3Day").innerText =
+                    "১৫";
+
+                document.getElementById("notice3Month").innerText =
+                    "জুন ২০২৬";
+
+                document.getElementById("notice3Title").innerText =
+                    "বিদ্যালয়ের ছুটির নোটিশ";
+
+                document.getElementById("notice3Text").innerText =
+                    "বিদ্যালয়ের ছুটি বা বিশেষ কার্যক্রম সম্পর্কিত তথ্য এখানে প্রকাশ করা যাবে।";
+
+                document.getElementById("notice3Button").innerText =
+                    "বিস্তারিত দেখুন";
+
+                document.getElementById("notice3Badge").innerText =
+                    "তথ্য";
+
+
+                /* FOOTER */
+
+                document.getElementById("footerSchool").innerText =
+                    "পোড়াবাড়ী উচ্চ বিদ্যালয়";
+
+                document.getElementById("footerText").innerText =
+                    "শিক্ষা • শৃঙ্খলা • সাফল্য";
+
+                document.getElementById("copyrightText").innerHTML =
+                    '© <span id="year">' +
+                    new Date().getFullYear() +
+                    '</span> পোড়াবাড়ী উচ্চ বিদ্যালয়। সর্বস্বত্ব সংরক্ষিত।';
+
+            }
+
+        }
+
+    </script>
+
+</body>
+</html>

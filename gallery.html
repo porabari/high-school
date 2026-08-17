@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>গ্যালারি | পোড়াবাড়ী উচ্চ বিদ্যালয়</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, "Noto Sans Bengali", sans-serif;
+            background: #f5f9f7;
+            color: #222;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 14px 6%;
+            background: rgba(0, 70, 50, 0.94);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(255,255,255,0.2);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 4px;
+        }
+
+        .school-name {
+            color: white;
+        }
+
+        .school-name h2 {
+            font-size: 20px;
+        }
+
+        .school-name p {
+            font-size: 11px;
+            opacity: 0.85;
+            margin-top: 3px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #ffd700;
+        }
+
+        .language-btn {
+            border: 1px solid white;
+            background: transparent;
+            color: white;
+            padding: 7px 14px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .language-btn:hover {
+            background: white;
+            color: #006a4e;
+        }
+
+        /* ================= PAGE HERO ================= */
+
+        .page-hero {
+            min-height: 48vh;
+            padding: 150px 7% 80px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+
+            background:
+                linear-gradient(
+                    rgba(0, 60, 45, 0.78),
+                    rgba(0, 60, 45, 0.78)
+                ),
+                url("images/school.jpg");
+
+            background-size: cover;
+            background-position: center;
+        }
+
+        .page-hero-content {
+            position: relative;
+            z-index: 5;
+        }
+
+        .page-hero h1 {
+            font-size: clamp(42px, 7vw, 70px);
+            letter-spacing: 2px;
+            animation: titleReveal 1s ease forwards;
+        }
+
+        .page-hero h1 span {
+            color: #ffd700;
+        }
+
+        .page-hero p {
+            margin-top: 15px;
+            font-size: 18px;
+            opacity: 0;
+            animation: fadeUp 1s ease 0.4s forwards;
+        }
+
+        /* ================= GALLERY ================= */
+
+        .gallery-section {
+            padding: 90px 7%;
+            background: #fff;
+        }
+
+        .section-title {
+            text-align: center;
+            color: #006a4e;
+            font-size: 36px;
+            margin-bottom: 12px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: #666;
+            max-width: 750px;
+            margin: 0 auto 45px;
+            line-height: 1.8;
+        }
+
+        .gallery-grid {
+            max-width: 1200px;
+            margin: auto;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .gallery-card {
+            position: relative;
+            height: 270px;
+            border-radius: 18px;
+            overflow: hidden;
+            background: #e8f1ed;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.09);
+            cursor: pointer;
+            transition: 0.4s;
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 35px rgba(0,0,0,0.15);
+        }
+
+        .gallery-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: 0.5s;
+        }
+
+        .gallery-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            inset: auto 0 0 0;
+            padding: 28px 20px 18px;
+            color: white;
+            background: linear-gradient(transparent, rgba(0,0,0,0.78));
+        }
+
+        .gallery-overlay h3 {
+            font-size: 19px;
+            margin-bottom: 4px;
+        }
+
+        .gallery-overlay p {
+            font-size: 13px;
+            opacity: 0.9;
+        }
+
+        /* ================= EMPTY PHOTO STYLE ================= */
+
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #006a4e;
+            background: linear-gradient(135deg, #e9f6f0, #f8fffc);
+            text-align: center;
+            padding: 20px;
+        }
+
+        .photo-placeholder .icon {
+            font-size: 48px;
+            margin-bottom: 12px;
+        }
+
+        .photo-placeholder h3 {
+            font-size: 18px;
+        }
+
+        .photo-placeholder p {
+            margin-top: 7px;
+            font-size: 13px;
+            color: #666;
+        }
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #004d39;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        .footer-school {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ================= LIGHTBOX ================= */
+
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.9);
+            z-index: 2000;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .lightbox.show {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 92vw;
+            max-height: 85vh;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+
+            width: 45px;
+            height: 45px;
+            border: none;
+            border-radius: 50%;
+
+            background: white;
+            color: #006a4e;
+            font-size: 28px;
+            cursor: pointer;
+        }
+
+        /* ================= ANIMATIONS ================= */
+
+        @keyframes titleReveal {
+            from {
+                opacity: 0;
+                transform: translateY(40px) scale(0.95);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(25px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media(max-width: 900px) {
+            header {
+                padding: 12px 4%;
+            }
+
+            nav {
+                gap: 10px;
+            }
+
+            nav a {
+                font-size: 11px;
+            }
+
+            .school-name h2 {
+                font-size: 16px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width: 600px) {
+            header {
+                position: relative;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            nav {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                padding-top: 5px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .page-hero {
+                min-height: 42vh;
+                padding-top: 70px;
+            }
+
+            .page-hero h1 {
+                font-size: 40px;
+            }
+
+            .page-hero p {
+                font-size: 15px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .gallery-card {
+                height: 250px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+        <div class="logo-area">
+            <div class="logo">
+                <img src="images/logo.png" alt="Porabari High School Logo">
+            </div>
+
+            <div class="school-name">
+                <h2 id="schoolName">পোড়াবাড়ী উচ্চ বিদ্যালয়</h2>
+                <p id="schoolTagline">শিক্ষা • শৃঙ্খলা • সাফল্য</p>
+            </div>
+        </div>
+
+        <nav>
+            <a href="index.html" id="navHome">হোম</a>
+            <a href="index.html#about" id="navAbout">আমাদের সম্পর্কে</a>
+            <a href="index.html#academic" id="navAcademic">একাডেমিক</a>
+            <a href="index.html#notice" id="navNotice">নোটিশ</a>
+            <a href="gallery.html" class="active" id="navGallery">গ্যালারি</a>
+            <a href="index.html#contact" id="navContact">যোগাযোগ</a>
+
+            <button class="language-btn" onclick="changeLanguage()" id="languageButton">
+                English
+            </button>
+        </nav>
+    </header>
+
+    <!-- ================= PAGE HERO ================= -->
+
+    <section class="page-hero">
+        <div class="page-hero-content">
+            <h1 id="heroTitle">ছবি <span>গ্যালারি</span></h1>
+            <p id="heroText">আমাদের বিদ্যালয়ের বিভিন্ন স্মরণীয় মুহূর্তের সংগ্রহ</p>
+        </div>
+    </section>
+
+    <!-- ================= GALLERY ================= -->
+
+    <section class="gallery-section">
+
+        <h2 class="section-title" id="galleryTitle">বিদ্যালয়ের ছবি গ্যালারি</h2>
+
+        <p class="section-subtitle" id="galleryText">
+            বিদ্যালয়ের বিভিন্ন অনুষ্ঠান, শিক্ষা কার্যক্রম, খেলাধুলা ও স্মরণীয় মুহূর্তের ছবি এখানে প্রদর্শিত হবে।
+        </p>
+
+        <div class="gallery-grid">
+
+            <!-- ছবির জায়গায় আপনার images ফোল্ডারের ছবি বসান -->
+             <div class="gallery-card" onclick="openLightbox('images/event1.jpg')">
+                <img src="images/event1.jpg" alt="বিদ্যালয়ের অনুষ্ঠান">
+                <div class="gallery-overlay">
+                    <h3 id="caption2">বিদ্যালয়ের অনুষ্ঠান</h3>
+                    <p id="caption2Text">পোড়াবাড়ী উচ্চ বিদ্যালয়</p>
+                </div>
+            </div>
+
+            <div class="gallery-card" onclick="openLightbox('images/event2.jpg')">
+                <img src="images/event2.jpg" alt="বার্ষিক অনুষ্ঠান">
+                <div class="gallery-overlay">
+                    <h3 id="caption3">বার্ষিক অনুষ্ঠান</h3>
+                    <p id="caption3Text">পোড়াবাড়ী উচ্চ বিদ্যালয়</p>
+                </div>
+            </div>
+
+            <div class="gallery-card" onclick="openLightbox('images/event3.jpg')">
+                <img src="images/event3.jpg" alt="ক্রীড়া প্রতিযোগিতা">
+                <div class="gallery-overlay">
+                    <h3 id="caption4">ক্রীড়া প্রতিযোগিতা</h3>
+                    <p id="caption4Text">পোড়াবাড়ী উচ্চ বিদ্যালয়</p>
+                </div>
+            </div>
+
+            <div class="gallery-card" onclick="openLightbox('images/event4.jpg')">
+                <img src="images/event4.jpg" alt="শিক্ষা কার্যক্রম">
+                <div class="gallery-overlay">
+                    <h3 id="caption5">শিক্ষা কার্যক্রম</h3>
+                    <p id="caption5Text">পোড়াবাড়ী উচ্চ বিদ্যালয়</p>
+                </div>
+            </div>
+
+            <div class="gallery-card" onclick="openLightbox('images/school.jpg')">
+                <img src="images/school.jpg" alt="বিদ্যালয় ভবন">
+                <div class="gallery-overlay">
+                    <h3 id="caption1">বিদ্যালয় ভবন</h3>
+                    <p id="caption1Text">পোড়াবাড়ী উচ্চ বিদ্যালয়</p>
+                </div>
+            </div>
+
+            
+
+            
+
+        </div>
+    </section>
+
+    <!-- ================= LIGHTBOX ================= -->
+
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <button class="close-lightbox" onclick="closeLightbox()">×</button>
+        <img id="lightboxImage" src="" alt="Gallery Image">
+    </div>
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+        <p class="footer-school" id="footerSchool">পোড়াবাড়ী উচ্চ বিদ্যালয়</p>
+        <p id="footerText">শিক্ষা • শৃঙ্খলা • সাফল্য</p>
+        <p>
+            © <span id="year"></span>
+            <span id="copyrightSchool">পোড়াবাড়ী উচ্চ বিদ্যালয়</span>
+        </p>
+    </footer>
+
+    <script>
+        let english = false;
+
+        document.getElementById("year").innerText = new Date().getFullYear();
+
+        function openLightbox(image) {
+            document.getElementById("lightboxImage").src = image;
+            document.getElementById("lightbox").classList.add("show");
+        }
+
+        function closeLightbox(event) {
+            if (
+                !event ||
+                event.target.id === "lightbox" ||
+                event.target.classList.contains("close-lightbox")
+            ) {
+                document.getElementById("lightbox").classList.remove("show");
+            }
+        }
+
+        document.addEventListener("keydown", function(event) {
+            if (event.key === "Escape") {
+                document.getElementById("lightbox").classList.remove("show");
+            }
+        });
+
+        function changeLanguage() {
+            english = !english;
+
+            if (english) {
+                document.getElementById("schoolName").innerText = "Porabari High School";
+                document.getElementById("schoolTagline").innerText = "Education • Discipline • Success";
+
+                document.getElementById("navHome").innerText = "Home";
+                document.getElementById("navAbout").innerText = "About Us";
+                document.getElementById("navAcademic").innerText = "Academic";
+                document.getElementById("navNotice").innerText = "Notice";
+                document.getElementById("navGallery").innerText = "Gallery";
+                document.getElementById("navContact").innerText = "Contact";
+                document.getElementById("languageButton").innerText = "বাংলা";
+
+                document.getElementById("heroTitle").innerHTML = 'Photo <span>Gallery</span>';
+                document.getElementById("heroText").innerText =
+                    "A collection of memorable moments from our school";
+
+                document.getElementById("galleryTitle").innerText = "School Photo Gallery";
+                document.getElementById("galleryText").innerText =
+                    "Photos of school events, educational activities, sports and memorable moments will be displayed here.";
+
+                document.getElementById("caption1").innerText = "School Building";
+                document.getElementById("caption1Text").innerText = "Porabari High School";
+                document.getElementById("caption2").innerText = "School Event";
+                document.getElementById("caption2Text").innerText = "Porabari High School";
+                document.getElementById("caption3").innerText = "Annual Program";
+                document.getElementById("caption3Text").innerText = "Porabari High School";
+                document.getElementById("caption4").innerText = "Sports Competition";
+                document.getElementById("caption4Text").innerText = "Porabari High School";
+                document.getElementById("caption5").innerText = "Educational Activities";
+                document.getElementById("caption5Text").innerText = "Porabari High School";
+
+                document.getElementById("footerSchool").innerText = "Porabari High School";
+                document.getElementById("footerText").innerText = "Education • Discipline • Success";
+                document.getElementById("copyrightSchool").innerText = "Porabari High School";
+            } else {
+                document.getElementById("schoolName").innerText = "পোড়াবাড়ী উচ্চ বিদ্যালয়";
+                document.getElementById("schoolTagline").innerText = "শিক্ষা • শৃঙ্খলা • সাফল্য";
+
+                document.getElementById("navHome").innerText = "হোম";
+                document.getElementById("navAbout").innerText = "আমাদের সম্পর্কে";
+                document.getElementById("navAcademic").innerText = "একাডেমিক";
+                document.getElementById("navNotice").innerText = "নোটিশ";
+                document.getElementById("navGallery").innerText = "গ্যালারি";
+                document.getElementById("navContact").innerText = "যোগাযোগ";
+                document.getElementById("languageButton").innerText = "English";
+
+                document.getElementById("heroTitle").innerHTML = 'ছবি <span>গ্যালারি</span>';
+                document.getElementById("heroText").innerText =
+                    "আমাদের বিদ্যালয়ের বিভিন্ন স্মরণীয় মুহূর্তের সংগ্রহ";
+
+                document.getElementById("galleryTitle").innerText = "বিদ্যালয়ের ছবি গ্যালারি";
+                document.getElementById("galleryText").innerText =
+                    "বিদ্যালয়ের বিভিন্ন অনুষ্ঠান, শিক্ষা কার্যক্রম, খেলাধুলা ও স্মরণীয় মুহূর্তের ছবি এখানে প্রদর্শিত হবে।";
+
+                document.getElementById("caption1").innerText = "বিদ্যালয় ভবন";
+                document.getElementById("caption1Text").innerText = "পোড়াবাড়ী উচ্চ বিদ্যালয়";
+                document.getElementById("caption2").innerText = "বার্ষিক অনুষ্ঠান";
+                document.getElementById("caption2Text").innerText = "এখানে অনুষ্ঠানের ছবি যোগ করুন";
+                document.getElementById("caption3").innerText = "ক্রীড়া প্রতিযোগিতা";
+                document.getElementById("caption3Text").innerText = "এখানে খেলাধুলার ছবি যোগ করুন";
+                document.getElementById("caption4").innerText = "শিক্ষা কার্যক্রম";
+                document.getElementById("caption4Text").innerText = "এখানে শিক্ষা কার্যক্রমের ছবি যোগ করুন";
+                document.getElementById("caption5").innerText = "সাংস্কৃতিক অনুষ্ঠান";
+                document.getElementById("caption5Text").innerText = "এখানে সাংস্কৃতিক অনুষ্ঠানের ছবি যোগ করুন";
+
+                document.getElementById("footerSchool").innerText = "পোড়াবাড়ী উচ্চ বিদ্যালয়";
+                document.getElementById("footerText").innerText = "শিক্ষা • শৃঙ্খলা • সাফল্য";
+                document.getElementById("copyrightSchool").innerText = "পোড়াবাড়ী উচ্চ বিদ্যালয়";
+            }
+        }
+    </script>
+
+</body>
+</html>

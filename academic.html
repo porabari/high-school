@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>একাডেমিক | পোড়াবাড়ী উচ্চ বিদ্যালয়</title>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,"Noto Sans Bengali",sans-serif;background:#f5f9f7;color:#222}
+header{position:fixed;top:0;left:0;width:100%;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:14px 6%;background:rgba(0,70,50,.95);backdrop-filter:blur(12px);box-shadow:0 4px 20px rgba(0,0,0,.15)}
+.logo-area{display:flex;align-items:center;gap:12px}
+.logo{width:55px;height:55px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.logo img{width:100%;height:100%;object-fit:contain;padding:4px}
+.school-name{color:#fff}.school-name h2{font-size:20px}.school-name p{font-size:11px;opacity:.85;margin-top:3px}
+nav{display:flex;align-items:center;gap:20px}
+nav a{color:#fff;text-decoration:none;font-weight:600;font-size:14px;transition:.3s}
+nav a:hover,nav a.active{color:#ffd700}
+.language-btn{border:1px solid #fff;background:transparent;color:#fff;padding:7px 14px;border-radius:20px;cursor:pointer;font-weight:bold}
+.language-btn:hover{background:#fff;color:#006a4e}
+
+.page-hero{min-height:48vh;padding:150px 7% 80px;display:flex;align-items:center;justify-content:center;text-align:center;color:#fff;background:linear-gradient(rgba(0,60,45,.82),rgba(0,60,45,.82)),url("images/school.jpg");background-size:cover;background-position:center}
+.page-hero h1{font-size:clamp(42px,7vw,70px);letter-spacing:2px}.page-hero h1 span{color:#ffd700}
+.page-hero p{margin-top:15px;font-size:18px}
+
+.section{padding:85px 7%;background:#fff}.section.alt{background:#f5f9f7}
+.section-title{text-align:center;color:#006a4e;font-size:36px;margin-bottom:12px}
+.section-subtitle{text-align:center;color:#666;max-width:850px;margin:0 auto 45px;line-height:1.8}
+
+.academic-intro{max-width:1050px;margin:auto;display:grid;grid-template-columns:1.2fr 1fr;gap:35px}
+.intro-card,.highlight-card{background:#f8fcfa;border:1px solid #dcece5;border-radius:18px;padding:30px;box-shadow:0 8px 25px rgba(0,0,0,.06)}
+.intro-card h3,.highlight-card h3{color:#006a4e;font-size:24px;margin-bottom:15px}
+.intro-card p{color:#666;line-height:1.9}
+.highlight-list{list-style:none}.highlight-list li{padding:12px 0;border-bottom:1px solid #dcece5;color:#555}.highlight-list li:last-child{border-bottom:0}.highlight-list li:before{content:"✓";color:#006a4e;font-weight:bold;margin-right:10px}
+
+.class-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(5,1fr);gap:18px}
+.class-card{text-align:center;padding:28px 15px;background:#fff;border:1px solid #dcece5;border-radius:16px;box-shadow:0 7px 20px rgba(0,0,0,.06);transition:.3s}
+.class-card:hover,.activity-card:hover,.result-card:hover{transform:translateY(-7px)}
+.class-icon{width:55px;height:55px;margin:0 auto 14px;border-radius:50%;background:#006a4e;color:#fff;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:bold}
+.class-card h3{color:#004d39;font-size:19px;margin-bottom:7px}.class-card p{color:#777;font-size:13px}
+
+.subject-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.subject-card{padding:25px 20px;background:#f8fcfa;border:1px solid #dcece5;border-radius:16px;transition:.3s}
+.subject-card:hover{transform:translateY(-5px);border-color:#006a4e}
+.subject-number{color:#006a4e;font-size:13px;font-weight:bold;margin-bottom:8px}
+.subject-card h3{color:#004d39;font-size:18px;margin-bottom:8px}.subject-card p{color:#777;font-size:13px;line-height:1.6}
+
+.activity-grid{max-width:1100px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.activity-card{background:#fff;border-radius:18px;padding:30px 24px;text-align:center;box-shadow:0 8px 24px rgba(0,0,0,.07);border:1px solid #dcece5;transition:.35s}
+.activity-icon{font-size:38px;margin-bottom:14px}.activity-card h3{color:#006a4e;font-size:20px;margin-bottom:10px}.activity-card p{color:#666;font-size:14px;line-height:1.7}
+
+.result-grid{max-width:900px;margin:auto;display:grid;grid-template-columns:repeat(2,1fr);gap:28px}
+.result-card{text-align:center;background:#fff;border:1px solid #dcece5;border-radius:20px;padding:38px 28px;box-shadow:0 8px 25px rgba(0,0,0,.07);transition:.35s}
+.result-icon{width:70px;height:70px;margin:0 auto 18px;border-radius:50%;background:#006a4e;color:#fff;display:flex;align-items:center;justify-content:center;font-size:32px}
+.result-card h3{color:#004d39;font-size:22px;margin-bottom:12px}.result-card p{color:#666;line-height:1.8;font-size:14px;min-height:52px}
+.result-button{display:inline-block;margin-top:20px;padding:10px 22px;border-radius:25px;background:#006a4e;color:#fff;text-decoration:none;font-size:14px;font-weight:bold;transition:.3s}
+.result-button:hover{background:#004d39}
+
+.info-grid{max-width:1000px;margin:auto;display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.info-card{text-align:center;background:#f8fcfa;border:1px solid #dcece5;border-radius:16px;padding:28px 18px}
+.info-card h3{color:#006a4e;margin-bottom:10px}.info-card p{color:#666;line-height:1.7;font-size:14px}
+
+footer{background:#004d39;color:#fff;text-align:center;padding:35px 20px}
+.footer-school{font-size:20px;font-weight:bold;margin-bottom:8px}footer p{margin:5px}
+
+@media(max-width:1000px){.class-grid{grid-template-columns:repeat(3,1fr)}.subject-grid{grid-template-columns:repeat(2,1fr)}.academic-intro{grid-template-columns:1fr}}
+@media(max-width:900px){header{padding:12px 4%}nav{gap:10px}nav a{font-size:11px}.school-name h2{font-size:16px}.activity-grid,.info-grid{grid-template-columns:1fr}}
+@media(max-width:700px){.result-grid{grid-template-columns:1fr}}
+@media(max-width:600px){header{position:relative;flex-wrap:wrap;gap:10px}nav{width:100%;justify-content:center;flex-wrap:wrap}.page-hero{min-height:42vh;padding-top:70px}.page-hero h1{font-size:40px}.section{padding:65px 5%}.section-title{font-size:28px}.class-grid{grid-template-columns:repeat(2,1fr)}.subject-grid{grid-template-columns:1fr}}
+</style>
+</head>
+
+<body>
+
+<header>
+<div class="logo-area">
+<div class="logo"><img src="images/logo.png" alt="Porabari High School Logo"></div>
+<div class="school-name">
+<h2 id="schoolName">পোড়াবাড়ী উচ্চ বিদ্যালয়</h2>
+<p id="schoolTagline">শিক্ষা • শৃঙ্খলা • সাফল্য</p>
+</div>
+</div>
+
+<nav>
+<a href="index.html" id="navHome">হোম</a>
+<a href="index.html#about" id="navAbout">আমাদের সম্পর্কে</a>
+<a href="academic.html" class="active" id="navAcademic">একাডেমিক</a>
+<a href="notice.html" id="navNotice">নোটিশ</a>
+<a href="gallery.html" id="navGallery">গ্যালারি</a>
+<a href="index.html#contact" id="navContact">যোগাযোগ</a>
+<button class="language-btn" onclick="changeLanguage()" id="languageButton">English</button>
+</nav>
+</header>
+
+<section class="page-hero">
+<div>
+<h1 id="heroTitle">একাডেমিক <span>কার্যক্রম</span></h1>
+<p id="heroText">শিক্ষার্থীদের মানসম্মত শিক্ষা ও উন্নয়নের জন্য আমাদের একাডেমিক কার্যক্রম</p>
+</div>
+</section>
+
+<section class="section">
+<h2 class="section-title" id="overviewTitle">একাডেমিক পরিচিতি</h2>
+<p class="section-subtitle" id="overviewSubtitle">শিক্ষার্থীদের জ্ঞান, দক্ষতা, নৈতিকতা ও সৃজনশীলতা বিকাশের লক্ষ্যে বিদ্যালয়ের একাডেমিক কার্যক্রম পরিচালিত হয়।</p>
+<div class="academic-intro">
+<div class="intro-card">
+<h3 id="introTitle">আমাদের শিক্ষাব্যবস্থা</h3>
+<p id="introText">পোড়াবাড়ী উচ্চ বিদ্যালয়ে শিক্ষার্থীদের নিয়মিত পাঠদান, মূল্যায়ন, সহশিক্ষা কার্যক্রম এবং পরীক্ষার প্রস্তুতির মাধ্যমে শিক্ষার একটি সুন্দর পরিবেশ তৈরি করার লক্ষ্য রাখা হয়।</p>
+</div>
+<div class="highlight-card">
+<h3 id="highlightTitle">একাডেমিক বৈশিষ্ট্য</h3>
+<ul class="highlight-list">
+<li id="feature1">নিয়মিত শ্রেণি কার্যক্রম</li>
+<li id="feature2">পরীক্ষা ও ধারাবাহিক মূল্যায়ন</li>
+<li id="feature3">শিক্ষার্থীবান্ধব শিক্ষা পরিবেশ</li>
+<li id="feature4">সহশিক্ষা ও সৃজনশীল কার্যক্রম</li>
+</ul>
+</div>
+</div>
+</section>
+
+<section class="section alt">
+<h2 class="section-title" id="classTitle">শ্রেণিসমূহ</h2>
+<p class="section-subtitle" id="classSubtitle">বিদ্যালয়ের বিভিন্ন শ্রেণিতে শিক্ষার্থীদের পাঠদান ও একাডেমিক কার্যক্রম পরিচালিত হয়।</p>
+<div class="class-grid">
+<div class="class-card"><div class="class-icon">৬</div><h3 id="class6">ষষ্ঠ শ্রেণি</h3><p id="class6Text">মাধ্যমিক শিক্ষার ভিত্তি</p></div>
+<div class="class-card"><div class="class-icon">৭</div><h3 id="class7">সপ্তম শ্রেণি</h3><p id="class7Text">জ্ঞান ও দক্ষতা উন্নয়ন</p></div>
+<div class="class-card"><div class="class-icon">৮</div><h3 id="class8">অষ্টম শ্রেণি</h3><p id="class8Text">শিক্ষার ধারাবাহিকতা</p></div>
+<div class="class-card"><div class="class-icon">৯</div><h3 id="class9">নবম শ্রেণি</h3><p id="class9Text">বিষয়ভিত্তিক প্রস্তুতি</p></div>
+<div class="class-card"><div class="class-icon">১০</div><h3 id="class10">দশম শ্রেণি</h3><p id="class10Text">এসএসসি প্রস্তুতি</p></div>
+</div>
+</section>
+
+<section class="section">
+<h2 class="section-title" id="subjectTitle">প্রধান বিষয়সমূহ</h2>
+<p class="section-subtitle" id="subjectSubtitle">শিক্ষার্থীদের জ্ঞান ও দক্ষতা বৃদ্ধির জন্য বিভিন্ন গুরুত্বপূর্ণ বিষয়ে পাঠদান করা হয়।</p>
+<div class="subject-grid">
+<div class="subject-card"><div class="subject-number">01</div><h3 id="subject1">বাংলা</h3><p id="subject1Text">ভাষা, সাহিত্য ও সৃজনশীল প্রকাশের বিকাশ।</p></div>
+<div class="subject-card"><div class="subject-number">02</div><h3 id="subject2">ইংরেজি</h3><p id="subject2Text">ইংরেজি ভাষা ও যোগাযোগ দক্ষতা উন্নয়ন।</p></div>
+<div class="subject-card"><div class="subject-number">03</div><h3 id="subject3">গণিত</h3><p id="subject3Text">যুক্তি, সমস্যা সমাধান ও গাণিতিক দক্ষতা।</p></div>
+<div class="subject-card"><div class="subject-number">04</div><h3 id="subject4">বিজ্ঞান</h3><p id="subject4Text">বৈজ্ঞানিক ধারণা, পর্যবেক্ষণ ও অনুসন্ধান।</p></div>
+<div class="subject-card"><div class="subject-number">05</div><h3 id="subject5">বাংলাদেশ ও বিশ্বপরিচয়</h3><p id="subject5Text">দেশ, সমাজ, ইতিহাস ও বিশ্বের সঙ্গে পরিচিতি।</p></div>
+<div class="subject-card"><div class="subject-number">06</div><h3 id="subject6">তথ্য ও যোগাযোগ প্রযুক্তি</h3><p id="subject6Text">ডিজিটাল জ্ঞান ও প্রযুক্তি ব্যবহারের দক্ষতা।</p></div>
+<div class="subject-card"><div class="subject-number">07</div><h3 id="subject7">ধর্ম ও নৈতিক শিক্ষা</h3><p id="subject7Text">নৈতিক মূল্যবোধ ও মানবিক গুণাবলির বিকাশ।</p></div>
+<div class="subject-card"><div class="subject-number">08</div><h3 id="subject8">শারীরিক শিক্ষা</h3><p id="subject8Text">শারীরিক সুস্থতা, খেলাধুলা ও শৃঙ্খলা।</p></div>
+</div>
+</section>
+
+<section class="section alt">
+<h2 class="section-title" id="activityTitle">শিক্ষা ও একাডেমিক কার্যক্রম</h2>
+<p class="section-subtitle" id="activitySubtitle">শ্রেণিকক্ষের শিক্ষার পাশাপাশি শিক্ষার্থীদের সামগ্রিক বিকাশে বিভিন্ন কার্যক্রম গুরুত্বপূর্ণ ভূমিকা রাখে।</p>
+<div class="activity-grid">
+<div class="activity-card"><div class="activity-icon">📚</div><h3 id="activity1">শ্রেণি পাঠদান</h3><p id="activity1Text">নিয়মিত পাঠদান ও বিষয়ভিত্তিক শিক্ষার মাধ্যমে শিক্ষার্থীদের জ্ঞান বৃদ্ধি করা।</p></div>
+<div class="activity-card"><div class="activity-icon">📝</div><h3 id="activity2">পরীক্ষা ও মূল্যায়ন</h3><p id="activity2Text">শিক্ষার্থীদের অগ্রগতি যাচাইয়ের জন্য বিভিন্ন পরীক্ষা ও মূল্যায়ন কার্যক্রম পরিচালনা করা।</p></div>
+<div class="activity-card"><div class="activity-icon">🏆</div><h3 id="activity3">প্রতিযোগিতা</h3><p id="activity3Text">শিক্ষার্থীদের প্রতিভা ও সৃজনশীলতা বিকাশে বিভিন্ন শিক্ষামূলক প্রতিযোগিতায় অংশগ্রহণ।</p></div>
+</div>
+</section>
+
+<section class="section alt" id="results">
+<h2 class="section-title" id="resultTitle">ফলাফল</h2>
+<p class="section-subtitle" id="resultSubtitle">বিদ্যালয়ের অভ্যন্তরীণ পরীক্ষা এবং বোর্ড পরীক্ষার ফলাফল আলাদাভাবে দেখুন।</p>
+<div class="result-grid">
+<div class="result-card">
+<div class="result-icon">🏫</div>
+<h3 id="localResultTitle">বিদ্যালয়ের পরীক্ষার ফলাফল</h3>
+<p id="localResultText">অর্ধবার্ষিক, বার্ষিক ও অন্যান্য স্থানীয় পরীক্ষার ফলাফল দেখতে এখানে ক্লিক করুন।</p>
+<a href="#" class="result-button" id="localResultButton">ফলাফল দেখুন</a>
+</div>
+<div class="result-card">
+<div class="result-icon">🎓</div>
+<h3 id="boardResultTitle">বোর্ড পরীক্ষার ফলাফল</h3>
+<p id="boardResultText">এসএসসি ও অন্যান্য বোর্ড পরীক্ষার ফলাফল দেখতে এখানে ক্লিক করুন।</p>
+<a href="https://www.educationboardresults.gov.bd/v2/home" class="result-button" id="boardResultButton" target="_blank" rel="noopener">ফলাফল দেখুন</a>
+</div>
+</div>
+</section>
+
+<section class="section">
+<h2 class="section-title" id="infoTitle">একাডেমিক তথ্য</h2>
+<p class="section-subtitle" id="infoSubtitle">প্রয়োজনীয় একাডেমিক তথ্য ও আপডেট নোটিশ বোর্ডে প্রকাশ করা হবে।</p>
+<div class="info-grid">
+<div class="info-card"><h3 id="info1Title">ক্লাস রুটিন</h3><p id="info1Text">শ্রেণিভিত্তিক ক্লাস রুটিন প্রকাশ করা হলে এখানে যুক্ত করা যাবে।</p></div>
+<div class="info-card"><h3 id="info2Title">পরীক্ষার রুটিন</h3><p id="info2Text">পরীক্ষা ও মূল্যায়নের সময়সূচি এখানে প্রকাশ করা যাবে।</p></div>
+<div class="info-card"><h3 id="info3Title">ফলাফল</h3><p id="info3Text">পরীক্ষার ফলাফল ও গুরুত্বপূর্ণ একাডেমিক আপডেট এখানে প্রকাশ করা যাবে।</p></div>
+</div>
+</section>
+
+<footer>
+<p class="footer-school" id="footerSchool">পোড়াবাড়ী উচ্চ বিদ্যালয়</p>
+<p id="footerText">শিক্ষা • শৃঙ্খলা • সাফল্য</p>
+<p id="copyrightText">© <span id="year"></span> পোড়াবাড়ী উচ্চ বিদ্যালয়। সর্বস্বত্ব সংরক্ষিত।</p>
+</footer>
+
+<script>
+let english = false;
+document.getElementById("year").textContent = new Date().getFullYear();
+
+const BN = {
+schoolName:"পোড়াবাড়ী উচ্চ বিদ্যালয়", schoolTagline:"শিক্ষা • শৃঙ্খলা • সাফল্য",
+navHome:"হোম", navAbout:"আমাদের সম্পর্কে", navAcademic:"একাডেমিক", navNotice:"নোটিশ", navGallery:"গ্যালারি", navContact:"যোগাযোগ",
+heroText:"শিক্ষার্থীদের মানসম্মত শিক্ষা ও উন্নয়নের জন্য আমাদের একাডেমিক কার্যক্রম",
+overviewTitle:"একাডেমিক পরিচিতি", overviewSubtitle:"শিক্ষার্থীদের জ্ঞান, দক্ষতা, নৈতিকতা ও সৃজনশীলতা বিকাশের লক্ষ্যে বিদ্যালয়ের একাডেমিক কার্যক্রম পরিচালিত হয়।",
+introTitle:"আমাদের শিক্ষাব্যবস্থা", introText:"পোড়াবাড়ী উচ্চ বিদ্যালয়ে শিক্ষার্থীদের নিয়মিত পাঠদান, মূল্যায়ন, সহশিক্ষা কার্যক্রম এবং পরীক্ষার প্রস্তুতির মাধ্যমে শিক্ষার একটি সুন্দর পরিবেশ তৈরি করার লক্ষ্য রাখা হয়।",
+highlightTitle:"একাডেমিক বৈশিষ্ট্য", feature1:"নিয়মিত শ্রেণি কার্যক্রম", feature2:"পরীক্ষা ও ধারাবাহিক মূল্যায়ন", feature3:"শিক্ষার্থীবান্ধব শিক্ষা পরিবেশ", feature4:"সহশিক্ষা ও সৃজনশীল কার্যক্রম",
+classTitle:"শ্রেণিসমূহ", classSubtitle:"বিদ্যালয়ের বিভিন্ন শ্রেণিতে শিক্ষার্থীদের পাঠদান ও একাডেমিক কার্যক্রম পরিচালিত হয়.",
+class6:"ষষ্ঠ শ্রেণি", class6Text:"মাধ্যমিক শিক্ষার ভিত্তি", class7:"সপ্তম শ্রেণি", class7Text:"জ্ঞান ও দক্ষতা উন্নয়ন", class8:"অষ্টম শ্রেণি", class8Text:"শিক্ষার ধারাবাহিকতা", class9:"নবম শ্রেণি", class9Text:"বিষয়ভিত্তিক প্রস্তুতি", class10:"দশম শ্রেণি", class10Text:"এসএসসি প্রস্তুতি",
+subjectTitle:"প্রধান বিষয়সমূহ", subjectSubtitle:"শিক্ষার্থীদের জ্ঞান ও দক্ষতা বৃদ্ধির জন্য বিভিন্ন গুরুত্বপূর্ণ বিষয়ে পাঠদান করা হয়।",
+subject1:"বাংলা", subject1Text:"ভাষা, সাহিত্য ও সৃজনশীল প্রকাশের বিকাশ।", subject2:"ইংরেজি", subject2Text:"ইংরেজি ভাষা ও যোগাযোগ দক্ষতা উন্নয়ন।", subject3:"গণিত", subject3Text:"যুক্তি, সমস্যা সমাধান ও গাণিতিক দক্ষতা।", subject4:"বিজ্ঞান", subject4Text:"বৈজ্ঞানিক ধারণা, পর্যবেক্ষণ ও অনুসন্ধান।", subject5:"বাংলাদেশ ও বিশ্বপরিচয়", subject5Text:"দেশ, সমাজ, ইতিহাস ও বিশ্বের সঙ্গে পরিচিতি।", subject6:"তথ্য ও যোগাযোগ প্রযুক্তি", subject6Text:"ডিজিটাল জ্ঞান ও প্রযুক্তি ব্যবহারের দক্ষতা।", subject7:"ধর্ম ও নৈতিক শিক্ষা", subject7Text:"নৈতিক মূল্যবোধ ও মানবিক গুণাবলির বিকাশ।", subject8:"শারীরিক শিক্ষা", subject8Text:"শারীরিক সুস্থতা, খেলাধুলা ও শৃঙ্খলা।",
+activityTitle:"শিক্ষা ও একাডেমিক কার্যক্রম", activitySubtitle:"শ্রেণিকক্ষের শিক্ষার পাশাপাশি শিক্ষার্থীদের সামগ্রিক বিকাশে বিভিন্ন কার্যক্রম গুরুত্বপূর্ণ ভূমিকা রাখে।",
+activity1:"শ্রেণি পাঠদান", activity1Text:"নিয়মিত পাঠদান ও বিষয়ভিত্তিক শিক্ষার মাধ্যমে শিক্ষার্থীদের জ্ঞান বৃদ্ধি করা।", activity2:"পরীক্ষা ও মূল্যায়ন", activity2Text:"শিক্ষার্থীদের অগ্রগতি যাচাইয়ের জন্য বিভিন্ন পরীক্ষা ও মূল্যায়ন কার্যক্রম পরিচালনা করা।", activity3:"প্রতিযোগিতা", activity3Text:"শিক্ষার্থীদের প্রতিভা ও সৃজনশীলতা বিকাশে বিভিন্ন শিক্ষামূলক প্রতিযোগিতায় অংশগ্রহণ।",
+resultTitle:"ফলাফল", resultSubtitle:"বিদ্যালয়ের অভ্যন্তরীণ পরীক্ষা এবং বোর্ড পরীক্ষার ফলাফল আলাদাভাবে দেখুন।", localResultTitle:"বিদ্যালয়ের পরীক্ষার ফলাফল", localResultText:"অর্ধবার্ষিক, বার্ষিক ও অন্যান্য স্থানীয় পরীক্ষার ফলাফল দেখতে এখানে ক্লিক করুন।", localResultButton:"ফলাফল দেখুন", boardResultTitle:"বোর্ড পরীক্ষার ফলাফল", boardResultText:"এসএসসি ও অন্যান্য বোর্ড পরীক্ষার ফলাফল দেখতে এখানে ক্লিক করুন।", boardResultButton:"ফলাফল দেখুন",
+infoTitle:"একাডেমিক তথ্য", infoSubtitle:"প্রয়োজনীয় একাডেমিক তথ্য ও আপডেট নোটিশ বোর্ডে প্রকাশ করা হবে।", info1Title:"ক্লাস রুটিন", info1Text:"শ্রেণিভিত্তিক ক্লাস রুটিন প্রকাশ করা হলে এখানে যুক্ত করা যাবে।", info2Title:"পরীক্ষার রুটিন", info2Text:"পরীক্ষা ও মূল্যায়নের সময়সূচি এখানে প্রকাশ করা যাবে।", info3Title:"ফলাফল", info3Text:"পরীক্ষার ফলাফল ও গুরুত্বপূর্ণ একাডেমিক আপডেট এখানে প্রকাশ করা যাবে।",
+footerSchool:"পোড়াবাড়ী উচ্চ বিদ্যালয়", footerText:"শিক্ষা • শৃঙ্খলা • সাফল্য"
+};
+
+const EN = {
+schoolName:"Porabari High School", schoolTagline:"Education • Discipline • Success",
+navHome:"Home", navAbout:"About Us", navAcademic:"Academic", navNotice:"Notice", navGallery:"Gallery", navContact:"Contact",
+heroText:"Our academic activities for quality education and student development",
+overviewTitle:"Academic Overview", overviewSubtitle:"The school's academic activities focus on developing students' knowledge, skills, values and creativity.",
+introTitle:"Our Education System", introText:"Porabari High School aims to create a positive learning environment through regular classes, assessment, co-curricular activities and examination preparation.",
+highlightTitle:"Academic Features", feature1:"Regular classroom activities", feature2:"Examinations and continuous assessment", feature3:"Student-friendly learning environment", feature4:"Co-curricular and creative activities",
+classTitle:"Classes", classSubtitle:"Teaching and academic activities are conducted for students from different classes.",
+class6:"Class Six", class6Text:"Foundation of secondary education", class7:"Class Seven", class7Text:"Knowledge and skill development", class8:"Class Eight", class8Text:"Continuity of learning", class9:"Class Nine", class9Text:"Subject-based preparation", class10:"Class Ten", class10Text:"SSC preparation",
+subjectTitle:"Main Subjects", subjectSubtitle:"Important subjects are taught to improve students' knowledge and skills.",
+subject1:"Bangla", subject1Text:"Language, literature and creative expression.", subject2:"English", subject2Text:"English language and communication skills.", subject3:"Mathematics", subject3Text:"Logic, problem solving and mathematical skills.", subject4:"Science", subject4Text:"Scientific concepts, observation and inquiry.", subject5:"Bangladesh & Global Studies", subject5Text:"Understanding the country, society, history and the world.", subject6:"Information & Communication Technology", subject6Text:"Digital knowledge and technology skills.", subject7:"Religion & Moral Education", subject7Text:"Moral values and development of human qualities.", subject8:"Physical Education", subject8Text:"Physical fitness, sports and discipline.",
+activityTitle:"Educational & Academic Activities", activitySubtitle:"Alongside classroom learning, various activities support the overall development of students.",
+activity1:"Classroom Teaching", activity1Text:"Developing students' knowledge through regular teaching and subject-based learning.", activity2:"Examinations & Assessment", activity2Text:"Conducting examinations and assessment activities to monitor students' progress.", activity3:"Competitions", activity3Text:"Participation in educational competitions to develop talent and creativity.",
+resultTitle:"Results", resultSubtitle:"View the school's internal examination results and board examination results separately.", localResultTitle:"School Examination Results", localResultText:"Click here to view half-yearly, annual and other school examination results.", localResultButton:"View Result", boardResultTitle:"Board Examination Results", boardResultText:"Click here to view SSC and other board examination results.", boardResultButton:"View Result",
+infoTitle:"Academic Information", infoSubtitle:"Necessary academic information and updates will be published on the notice board.", info1Title:"Class Routine", info1Text:"Class-wise routines can be added here when published.", info2Title:"Exam Routine", info2Text:"Examination and assessment schedules can be published here.", info3Title:"Results", info3Text:"Examination results and important academic updates can be published here.",
+footerSchool:"Porabari High School", footerText:"Education • Discipline • Success"
+};
+
+function applyLanguage(data){
+Object.keys(data).forEach(function(id){
+const el=document.getElementById(id);
+if(el) el.textContent=data[id];
+});
+document.getElementById("heroTitle").innerHTML=english?'Academic <span>Activities</span>':'একাডেমিক <span>কার্যক্রম</span>';
+document.getElementById("languageButton").textContent=english?"বাংলা":"English";
+document.documentElement.lang=english?"en":"bn";
+}
+
+function changeLanguage(){
+english=!english;
+applyLanguage(english?EN:BN);
+}
+</script>
+
+</body>
+</html>
