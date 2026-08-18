@@ -133,12 +133,7 @@
             position: relative;
             overflow: hidden;
 
-            background-image:
-                linear-gradient(
-                    rgba(0, 0, 0, 0.18),
-                    rgba(0, 0, 0, 0.18)
-                ),
-                url("./images/contact-bg.jpg");
+            background-image: none;
 
             background-size: cover;
             background-position: center center;
@@ -383,7 +378,19 @@
     <!-- ================= FULL PAGE IMAGE ================= -->
 
     <main class="contact-page">
-        <!-- contact-bg.jpg পুরো Contact page জুড়ে থাকবে -->
+
+        <img
+            class="contact-bg-image"
+            src="./images/contact-bg.jpg"
+            alt=""
+        >
+
+        <div class="typing-overlay">
+            <div class="typing-line" id="typingLine1"></div>
+            <div class="typing-line" id="typingLine2"></div>
+            <div class="typing-line" id="typingLine3"></div>
+        </div>
+
     </main>
 
 
