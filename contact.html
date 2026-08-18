@@ -167,12 +167,60 @@
             content: "";
             position: absolute;
             inset: 0;
-            background: rgba(0, 0, 0, 0.18);
+            background: rgba(0, 0, 0, 0.28);
             z-index: 1;
             pointer-events: none;
         }
 
-        /* ছবির উপর কোনো লেখা নেই */
+        .typing-overlay {
+            position: absolute;
+            z-index: 2;
+            left: 50%;
+            top: 55%;
+            transform: translate(-50%, -50%);
+            width: min(90%, 850px);
+            text-align: center;
+            color: white;
+            font-family: "Courier New", monospace;
+            text-shadow: 0 0 12px rgba(0,0,0,0.95),
+                         0 0 25px rgba(255,255,255,0.18);
+            pointer-events: none;
+        }
+
+        .typing-line {
+            min-height: 1.35em;
+            font-size: clamp(28px, 4.5vw, 62px);
+            font-weight: 700;
+            line-height: 1.25;
+            letter-spacing: 1px;
+        }
+
+        .typing-line:nth-child(2) {
+            color: #ffd34d;
+            margin-top: 8px;
+        }
+
+        .typing-line:nth-child(3) {
+            margin-top: 24px;
+            font-size: clamp(25px, 3.8vw, 48px);
+        }
+
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 0.9em;
+            margin-left: 5px;
+            background: #ffd34d;
+            vertical-align: -0.08em;
+            animation: cursorBlink 0.75s infinite;
+        }
+
+        @keyframes cursorBlink {
+            0%, 45% { opacity: 1; }
+            46%, 100% { opacity: 0; }
+        }
+
+        /* ছবির উপর autotype লেখা */
 
         /* ================= FOOTER ================= */
 
@@ -241,6 +289,19 @@
 
             .contact-bg-image {
                 object-position: center center;
+            }
+
+            .typing-overlay {
+                top: 52%;
+                width: 92%;
+            }
+
+            .typing-line {
+                font-size: clamp(24px, 7vw, 38px);
+            }
+
+            .typing-line:nth-child(3) {
+                font-size: clamp(22px, 6.5vw, 34px);
             }
 
             .logo {
@@ -358,6 +419,69 @@
 
         document.getElementById("year").innerText =
             new Date().getFullYear();
+
+
+        /* ================= AUTOTYPE ================= */
+
+        const typingTexts = [
+            "something special",
+            "coming soon......",
+            "Stay tuned"
+        ];
+
+        const typingElements = [
+            document.getElementById("typingLine1"),
+            document.getElementById("typingLine2"),
+            document.getElementById("typingLine3")
+        ];
+
+        let typingIndex = 0;
+        let charIndex = 0;
+        const typingSpeed = 95;
+        const lineDelay = 350;
+
+        function addCursor(element) {
+            const oldCursor = element.querySelector(".typing-cursor");
+            if (oldCursor) oldCursor.remove();
+
+            const cursor = document.createElement("span");
+            cursor.className = "typing-cursor";
+            element.appendChild(cursor);
+        }
+
+        function typeNextCharacter() {
+            const element = typingElements[typingIndex];
+            const text = typingTexts[typingIndex];
+
+            if (charIndex === 0) {
+                element.textContent = "";
+                addCursor(element);
+            }
+
+            if (charIndex < text.length) {
+                const cursor = element.querySelector(".typing-cursor");
+                const character = document.createTextNode(text.charAt(charIndex));
+
+                cursor.before(character);
+
+                charIndex++;
+
+                setTimeout(typeNextCharacter, typingSpeed);
+            } else {
+                typingIndex++;
+                charIndex = 0;
+
+                if (typingIndex < typingTexts.length) {
+                    setTimeout(typeNextCharacter, lineDelay);
+                } else {
+                    // Finished typing: keep blinking cursor on the final line.
+                    const finalElement = typingElements[typingElements.length - 1];
+                    addCursor(finalElement);
+                }
+            }
+        }
+
+        typeNextCharacter();
 
 
         /* LANGUAGE SWITCH */
