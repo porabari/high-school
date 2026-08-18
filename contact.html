@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>যোগাযোগ | পোড়াবাড়ী উচ্চ বিদ্যালয়</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, "Noto Sans Bengali", sans-serif;
+            background: #000;
+            color: #222;
+            overflow-x: hidden;
+        }
+
+        /* ================= HEADER ================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 14px 6%;
+
+            background: rgba(0, 70, 50, 0.94);
+            backdrop-filter: blur(12px);
+
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: white;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+            box-shadow: 0 0 15px rgba(255,255,255,0.2);
+        }
+
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            padding: 4px;
+        }
+
+        .school-name {
+            color: white;
+        }
+
+        .school-name h2 {
+            font-size: 20px;
+        }
+
+        .school-name p {
+            font-size: 11px;
+            opacity: 0.85;
+            margin-top: 3px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: 0.3s;
+        }
+
+        nav a:hover,
+        nav a.active {
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        .language-btn {
+            border: 1px solid white;
+            background: transparent;
+            color: white;
+
+            padding: 7px 14px;
+            border-radius: 20px;
+
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .language-btn:hover {
+            background: white;
+            color: #006a4e;
+        }
+
+        /* ================= CONTACT IMAGE ================= */
+
+        .contact-page {
+            min-height: 100vh;
+            width: 100%;
+
+            position: relative;
+            overflow: hidden;
+
+            background-image:
+                linear-gradient(
+                    rgba(0, 0, 0, 0.18),
+                    rgba(0, 0, 0, 0.18)
+                ),
+                url("images/contact-bg.jpg");
+
+            background-size: cover;
+            background-position: center center;
+            background-repeat: no-repeat;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            /* header-এর নিচে image ঠিকমতো শুরু হবে */
+            padding-top: 82px;
+        }
+
+        /* ছবির উপর কোনো লেখা নেই */
+
+        /* ================= FOOTER ================= */
+
+        footer {
+            background: #004d39;
+            color: white;
+            text-align: center;
+            padding: 35px 20px;
+        }
+
+        footer p {
+            margin: 5px;
+        }
+
+        .footer-school {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+
+        /* ================= MOBILE ================= */
+
+        @media(max-width: 900px) {
+
+            header {
+                padding: 12px 4%;
+            }
+
+            nav {
+                gap: 10px;
+            }
+
+            nav a {
+                font-size: 11px;
+            }
+
+            .school-name h2 {
+                font-size: 16px;
+            }
+        }
+
+        @media(max-width: 600px) {
+
+            header {
+                position: relative;
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            nav {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                padding-top: 5px;
+            }
+
+            nav a {
+                font-size: 12px;
+            }
+
+            .contact-page {
+                min-height: 90vh;
+                padding-top: 20px;
+
+                background-position: center center;
+            }
+
+            .logo {
+                width: 48px;
+                height: 48px;
+            }
+
+            .school-name h2 {
+                font-size: 15px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- ================= HEADER ================= -->
+
+    <header>
+
+        <div class="logo-area">
+
+            <div class="logo">
+                <img src="images/logo.png" alt="Porabari High School Logo">
+            </div>
+
+            <div class="school-name">
+
+                <h2 id="schoolName">
+                    পোড়াবাড়ী উচ্চ বিদ্যালয়
+                </h2>
+
+                <p id="schoolTagline">
+                    শিক্ষা • শৃঙ্খলা • সাফল্য
+                </p>
+
+            </div>
+
+        </div>
+
+        <nav>
+
+            <a href="index.html" id="navHome">
+                হোম
+            </a>
+
+            <a href="index.html#about" id="navAbout">
+                আমাদের সম্পর্কে
+            </a>
+
+            <a href="academic.html" id="navAcademic">
+                একাডেমিক
+            </a>
+
+            <a href="notice.html" id="navNotice">
+                নোটিশ
+            </a>
+
+            <a href="gallery.html" id="navGallery">
+                গ্যালারি
+            </a>
+
+            <a href="contact.html" class="active" id="navContact">
+                যোগাযোগ
+            </a>
+
+            <button
+                class="language-btn"
+                onclick="changeLanguage()"
+                id="languageButton">
+                English
+            </button>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ================= FULL PAGE IMAGE ================= -->
+
+    <main class="contact-page">
+        <!-- contact-bg.jpg পুরো Contact page জুড়ে থাকবে -->
+    </main>
+
+
+    <!-- ================= FOOTER ================= -->
+
+    <footer>
+
+        <p class="footer-school" id="footerSchool">
+            পোড়াবাড়ী উচ্চ বিদ্যালয়
+        </p>
+
+        <p id="footerText">
+            শিক্ষা • শৃঙ্খলা • সাফল্য
+        </p>
+
+        <p>
+            © <span id="year"></span>
+            <span id="copyrightSchool">
+                পোড়াবাড়ী উচ্চ বিদ্যালয়
+            </span>
+        </p>
+
+    </footer>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        let english = false;
+
+        /* CURRENT YEAR */
+
+        document.getElementById("year").innerText =
+            new Date().getFullYear();
+
+
+        /* LANGUAGE SWITCH */
+
+        function changeLanguage() {
+
+            english = !english;
+
+            if (english) {
+
+                /* SCHOOL */
+
+                document.getElementById("schoolName").innerText =
+                    "Porabari High School";
+
+                document.getElementById("schoolTagline").innerText =
+                    "Education • Discipline • Success";
+
+
+                /* NAVIGATION */
+
+                document.getElementById("navHome").innerText =
+                    "Home";
+
+                document.getElementById("navAbout").innerText =
+                    "About Us";
+
+                document.getElementById("navAcademic").innerText =
+                    "Academic";
+
+                document.getElementById("navNotice").innerText =
+                    "Notice";
+
+                document.getElementById("navGallery").innerText =
+                    "Gallery";
+
+                document.getElementById("navContact").innerText =
+                    "Contact";
+
+
+                /* BUTTON */
+
+                document.getElementById("languageButton").innerText =
+                    "বাংলা";
+
+
+                /* FOOTER */
+
+                document.getElementById("footerSchool").innerText =
+                    "Porabari High School";
+
+                document.getElementById("footerText").innerText =
+                    "Education • Discipline • Success";
+
+                document.getElementById("copyrightSchool").innerText =
+                    "Porabari High School";
+
+            } else {
+
+                /* SCHOOL */
+
+                document.getElementById("schoolName").innerText =
+                    "পোড়াবাড়ী উচ্চ বিদ্যালয়";
+
+                document.getElementById("schoolTagline").innerText =
+                    "শিক্ষা • শৃঙ্খলা • সাফল্য";
+
+
+                /* NAVIGATION */
+
+                document.getElementById("navHome").innerText =
+                    "হোম";
+
+                document.getElementById("navAbout").innerText =
+                    "আমাদের সম্পর্কে";
+
+                document.getElementById("navAcademic").innerText =
+                    "একাডেমিক";
+
+                document.getElementById("navNotice").innerText =
+                    "নোটিশ";
+
+                document.getElementById("navGallery").innerText =
+                    "গ্যালারি";
+
+                document.getElementById("navContact").innerText =
+                    "যোগাযোগ";
+
+
+                /* BUTTON */
+
+                document.getElementById("languageButton").innerText =
+                    "English";
+
+
+                /* FOOTER */
+
+                document.getElementById("footerSchool").innerText =
+                    "পোড়াবাড়ী উচ্চ বিদ্যালয়";
+
+                document.getElementById("footerText").innerText =
+                    "শিক্ষা • শৃঙ্খলা • সাফল্য";
+
+                document.getElementById("copyrightSchool").innerText =
+                    "পোড়াবাড়ী উচ্চ বিদ্যালয়";
+            }
+        }
+
+    </script>
+
+</body>
+</html>
