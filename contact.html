@@ -1,21 +1,46 @@
 <!DOCTYPE html>
 <html lang="bn">
 <head>
-<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>যোগাযোগ | পোড়াবাড়ী উচ্চ বিদ্যালয়</title>
 <style>
-*{box-sizing:border-box;margin:0;padding:0}html,body{width:100%;height:100%;font-family:Arial,"Noto Sans Bengali",sans-serif;background:#020817;color:#fff;overflow:hidden}header{position:fixed;top:0;left:0;width:100%;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:9px 5%;background:rgba(2,12,30,.82);backdrop-filter:blur(14px);border-bottom:1px solid rgba(0,183,255,.28)}.logo-area{display:flex;align-items:center;gap:12px}.logo{width:54px;height:54px;border-radius:50%;overflow:hidden;background:#fff}.logo img{width:100%;height:100%;object-fit:contain;padding:3px}.school-name h2{font-size:19px}.school-name p{font-size:10px;letter-spacing:2px;opacity:.8;margin-top:3px}nav{display:flex;align-items:center;gap:18px}nav a{color:#fff;text-decoration:none;font-size:14px;font-weight:600;padding:9px 3px;position:relative;transition:.3s}nav a:hover,nav a.active{color:#00b7ff}nav a.active:after{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;background:#00b7ff;box-shadow:0 0 12px #00b7ff}.language-btn{border:1px solid #00b7ff;background:rgba(0,183,255,.1);color:#fff;padding:7px 14px;border-radius:20px;cursor:pointer;font-weight:bold}.theme-btn{border:0;background:transparent;color:#fff;font-size:20px;cursor:pointer}
-.wolf-page{position:relative;width:100vw;height:100vh;overflow:hidden;background:#01040d}.wolf-layer{position:absolute;inset:-8%;background-image:linear-gradient(rgba(0,8,24,.18),rgba(0,8,24,.55)),url("images/wolf-contact.jpg");background-size:cover;background-position:center;animation:walk 18s ease-in-out infinite alternate;opacity:.82}.wolf-layer.two{inset:-13%;opacity:.18;filter:blur(2px);animation:walk2 27s ease-in-out infinite alternate}.wolf-layer.three{inset:-4%;opacity:.13;mix-blend-mode:screen;animation:pulse 6s ease-in-out infinite}.overlay{position:absolute;inset:0;background:radial-gradient(circle at 50% 42%,rgba(0,183,255,.13),transparent 35%),linear-gradient(to bottom,rgba(0,4,18,.2),rgba(0,4,15,.67));z-index:3}.rain{position:absolute;inset:-20%;z-index:4;opacity:.4;pointer-events:none;background-image:repeating-linear-gradient(105deg,transparent 0 7px,rgba(170,225,255,.35) 8px,transparent 9px 22px);background-size:80px 100px;animation:rain .8s linear infinite}.scan{position:absolute;left:0;right:0;top:-20%;height:20%;z-index:6;background:linear-gradient(transparent,rgba(0,200,255,.18),transparent);filter:blur(5px);animation:scan 6s linear infinite}.particles i{position:absolute;z-index:5;width:4px;height:4px;border-radius:50%;background:#58d6ff;box-shadow:0 0 12px #00b7ff;animation:up var(--d) linear infinite}.p1{left:8%;bottom:10%;--d:7s}.p2{left:20%;bottom:20%;--d:9s}.p3{left:34%;bottom:7%;--d:6s}.p4{left:48%;bottom:18%;--d:8s}.p5{left:65%;bottom:10%;--d:10s}.p6{left:80%;bottom:22%;--d:7s}.content{position:absolute;inset:0;z-index:8;display:flex;align-items:flex-end;justify-content:center;text-align:center;padding:0 20px 14vh}.coming{font-size:clamp(34px,6vw,82px);font-weight:900;font-style:italic;letter-spacing:3px;color:#fff;text-shadow:0 0 8px #fff,0 0 18px #00b7ff,0 0 42px #0077ff,0 0 75px rgba(0,174,255,.75);animation:coming 2.2s ease-in-out infinite}.sub{display:block;margin-top:8px;font-size:clamp(10px,1.5vw,16px);letter-spacing:5px;color:#8fe8ff;opacity:.85}
-footer{position:absolute;left:0;bottom:0;width:100%;z-index:15;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 5%;background:rgba(1,9,24,.84);backdrop-filter:blur(12px);border-top:1px solid rgba(0,174,255,.25);font-size:13px}.center{text-align:center;flex:1}.credit{color:#8bdfff}.credit strong{color:#00b7ff}.social{display:inline-flex;width:29px;height:29px;border-radius:50%;border:1px solid rgba(0,183,255,.45);align-items:center;justify-content:center;color:#fff;text-decoration:none;margin-left:5px}.top{position:fixed;right:18px;bottom:76px;z-index:30;width:42px;height:42px;border-radius:50%;border:1px solid #00b7ff;background:rgba(0,20,50,.8);color:#fff;font-size:19px;cursor:pointer}
-@keyframes walk{0%{transform:translateX(-2%) scale(1.02);background-position:44% 50%}50%{transform:translateX(2%) scale(1.08);background-position:54% 50%}100%{transform:translateX(-1%) scale(1.03);background-position:60% 50%}}@keyframes walk2{0%{transform:translateX(4%) scale(1.03);background-position:60% 50%}100%{transform:translateX(-5%) scale(1.1);background-position:40% 50%}}@keyframes pulse{0%,100%{transform:scale(1);opacity:.1}50%{transform:scale(1.05);opacity:.23}}@keyframes rain{to{transform:translate(80px,120px)}}@keyframes scan{to{top:110%}}@keyframes up{0%{transform:translateY(0);opacity:0}15%{opacity:1}100%{transform:translateY(-70vh) translateX(50px);opacity:0}}@keyframes coming{0%,100%{opacity:.78;transform:scale(1)}50%{opacity:1;transform:scale(1.035)}}
-@media(max-width:900px){header{padding:8px 3%;flex-wrap:wrap}nav{gap:8px}nav a{font-size:11px}.school-name h2{font-size:15px}footer{font-size:10px;padding:9px 3%}}@media(max-width:600px){header{position:relative}nav{width:100%;justify-content:center;flex-wrap:wrap}.wolf-page{height:calc(100vh - 72px)}.content{padding-bottom:16vh}.coming{letter-spacing:1px}.sub{letter-spacing:2px}footer{flex-direction:column;text-align:center;gap:5px}.top{bottom:145px}}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:Arial,sans-serif;background:#000;color:#fff;min-height:100vh;overflow:hidden}
+.contact-section{min-height:100vh;width:100%;position:relative;display:flex;justify-content:center;align-items:center;text-align:center;background-image:linear-gradient(rgba(0,0,0,.45),rgba(0,0,0,.88)),url("image/contact-bg.jpg");background-size:cover;background-position:center;background-repeat:no-repeat;background-attachment:fixed}
+.overlay{position:absolute;inset:0;background:radial-gradient(circle at center,rgba(0,0,0,.1),rgba(0,0,0,.7));z-index:1}
+.home-btn{position:absolute;top:25px;left:25px;z-index:10;padding:10px 22px;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.7);border-radius:30px;background:rgba(0,0,0,.45);backdrop-filter:blur(5px);transition:.3s}
+.home-btn:hover{background:#fff;color:#000}
+.content{position:relative;z-index:5;width:90%;max-width:900px;padding:40px 20px}
+.content h1{font-size:52px;letter-spacing:8px;margin-bottom:30px;text-transform:uppercase;text-shadow:0 0 10px rgba(255,255,255,.4)}
+.typing-box{min-height:120px;display:flex;justify-content:center;align-items:center;flex-wrap:wrap}
+#typing{font-size:30px;font-weight:bold;line-height:1.7;letter-spacing:2px;text-shadow:0 0 8px rgba(255,255,255,.7)}
+.cursor{display:inline-block;width:3px;height:34px;margin-left:7px;background:#fff;vertical-align:middle;animation:blink .7s infinite}
+@keyframes blink{0%,50%{opacity:1}51%,100%{opacity:0}}
+.contact-btn{display:inline-block;margin-top:35px;padding:14px 35px;color:#fff;text-decoration:none;font-size:17px;letter-spacing:2px;border:1px solid #fff;border-radius:30px;background:rgba(0,0,0,.35);transition:.3s}
+.contact-btn:hover{background:#fff;color:#000}
+@media(max-width:600px){.home-btn{top:18px;left:18px;padding:8px 17px;font-size:14px}.content h1{font-size:32px;letter-spacing:5px}.content{padding:30px 10px}#typing{font-size:20px}.contact-btn{padding:12px 28px;font-size:15px}.contact-section{background-attachment:scroll}}
 </style>
 </head>
 <body>
-<header><div class="logo-area"><div class="logo"><img src="images/logo.png" alt="Porabari High School"></div><div class="school-name"><h2 id="schoolName">পোড়াবাড়ী উচ্চ বিদ্যালয়</h2><p id="tagline">শিক্ষা • শৃঙ্খলা • সাফল্য</p></div></div><nav><a href="index.html" id="home">হোম</a><a href="index.html#about" id="about">আমাদের সম্পর্কে</a><a href="academic.html" id="academic">একাডেমিক</a><a href="notice.html" id="notice">নোটিশ</a><a href="gallery.html" id="gallery">গ্যালারি</a><a href="contact.html" id="contact" class="active">যোগাযোগ</a><button class="language-btn" onclick="changeLanguage()" id="lang">English</button><button class="theme-btn" onclick="toggleEffect()">◐</button></nav></header>
-<main class="wolf-page"><div class="wolf-layer"></div><div class="wolf-layer two"></div><div class="wolf-layer three"></div><div class="overlay"></div><div class="rain"></div><div class="scan"></div><div class="particles"><i class="p1"></i><i class="p2"></i><i class="p3"></i><i class="p4"></i><i class="p5"></i><i class="p6"></i></div><section class="content"><div><div class="coming" id="coming">Something is coming.........</div><span class="sub" id="sub">অপেক্ষায় থাকুন • নতুন অধ্যায় খুব শীঘ্রই শুরু হবে</span></div></section><button class="top" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button><footer><div>📍 <span id="address">পোড়াবাড়ী, সরিষা, কুড়িগ্রাম, বাংলাদেশ</span></div><div class="center">© <span id="year"></span> <span id="copy">পোড়াবাড়ী উচ্চ বিদ্যালয়</span> <span> | </span> <span id="rights">সকল অধিকার সংরক্ষিত</span></div><div class="credit" id="credit">Designed &amp; Developed by <strong>WolfBite</strong> 🐺 <a class="social" href="#">f</a><a class="social" href="#">▶</a></div></footer></main>
+<section class="contact-section">
+<div class="overlay"></div>
+<a href="index.html" class="home-btn">← Home</a>
+<div class="content">
+<h1>Contact</h1>
+<div class="typing-box"><div id="typing"></div><span class="cursor"></span></div>
+<a href="#" class="contact-btn">Contact Us</a>
+</div>
+</section>
 <script>
-document.getElementById('year').textContent=new Date().getFullYear();let en=false;
-function changeLanguage(){en=!en;document.getElementById('schoolName').textContent=en?'Porabari High School':'পোড়াবাড়ী উচ্চ বিদ্যালয়';document.getElementById('tagline').textContent=en?'Education • Discipline • Success':'শিক্ষা • শৃঙ্খলা • সাফল্য';document.getElementById('home').textContent=en?'Home':'হোম';document.getElementById('about').textContent=en?'About Us':'আমাদের সম্পর্কে';document.getElementById('academic').textContent=en?'Academic':'একাডেমিক';document.getElementById('notice').textContent=en?'Notice':'নোটিশ';document.getElementById('gallery').textContent=en?'Gallery':'গ্যালারি';document.getElementById('contact').textContent=en?'Contact':'যোগাযোগ';document.getElementById('lang').textContent=en?'বাংলা':'English';document.getElementById('sub').textContent=en?'Stay tuned • The next chapter begins soon':'অপেক্ষায় থাকুন • নতুন অধ্যায় খুব শীঘ্রই শুরু হবে';document.getElementById('address').textContent=en?'Porabari, Sarisha, Kurigram, Bangladesh':'পোড়াবাড়ী, সরিষা, কুড়িগ্রাম, বাংলাদেশ';document.getElementById('copy').textContent=en?'Porabari High School':'পোড়াবাড়ী উচ্চ বিদ্যালয়';document.getElementById('rights').textContent=en?'All rights reserved':'সকল অধিকার সংরক্ষিত'}
-function toggleEffect(){document.querySelectorAll('.wolf-layer').forEach(x=>x.style.animationPlayState=x.style.animationPlayState==='paused'?'running':'paused')}
-</script></body></html>
+const text="Something special coming soon......";
+const secondLine="Stay tuned";
+const typingElement=document.getElementById("typing");
+let index=0,secondIndex=0;
+function typeFirstLine(){if(index<text.length){typingElement.innerHTML+=text.charAt(index);index++;setTimeout(typeFirstLine,100)}else setTimeout(typeSecondLine,500)}
+function typeSecondLine(){if(secondIndex===0)typingElement.innerHTML+="<br>";if(secondIndex<secondLine.length){typingElement.innerHTML+=secondLine.charAt(secondIndex);secondIndex++;setTimeout(typeSecondLine,100)}}
+typeFirstLine();
+</script>
+</body>
+</html>
